@@ -1,0 +1,4 @@
+<div class="custom-checkbox" *ngIf="model" [style]="{ color: model.value?.color }">
+  <input [attr.id]="'check-' + label" type="checkbox" [(ngModel)]="model.checked" (ngModelChange)="onCheckChange($event)" />
+  <label [attr.for]="'check-' + label">{{ label }}</label>
+</div>

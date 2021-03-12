@@ -1,0 +1,13 @@
+header {
+  p {
+    margin: 0;
+  }
+}
+
+section {
+  display: flex;
+
+  > div {
+    flex: 1;
+  }
+}

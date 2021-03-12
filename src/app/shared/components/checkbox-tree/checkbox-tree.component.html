@@ -1,0 +1,6 @@
+<div class="node" [ngClass]="{ root: node.isRoot() }">
+  <app-custom-checkbox [model]="node.model" [labelProperty]="labelProperty" (checkedChange)="setChecked($event)"></app-custom-checkbox>
+  <ng-container *ngIf="node.hasChildren()">
+    <app-checkbox-tree *ngFor="let child of node.children" [node]="child" [labelProperty]="labelProperty"></app-checkbox-tree>
+  </ng-container>
+</div>
