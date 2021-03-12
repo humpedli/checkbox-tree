@@ -1,0 +1,41 @@
+{
+  "data": "Összes",
+  "children": [
+    {
+      "data": "Emlősök",
+      "children": [
+        {
+          "data": "Kutya"
+        },
+        {
+          "data": "Macska"
+        }
+      ]
+    },
+    {
+      "data": "Hüllők",
+      "children": [
+        {
+          "data": "Kígyó"
+        },
+        {
+          "data": "Gyík"
+        }
+      ]
+    },
+    {
+      "data": "Madarak",
+      "children": [
+        {
+          "data": "Fecske"
+        },
+        {
+          "data": "Tyúk"
+        },
+        {
+          "data": "Bagoly"
+        }
+      ]
+    }
+  ]
+}

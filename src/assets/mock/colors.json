@@ -1,0 +1,57 @@
+{
+  "data": {
+    "name": "Összes variáció"
+  },
+  "children": [
+    {
+      "data": {
+        "name": "Sárga variációk"
+      },
+      "children": [
+        {
+          "data": {
+            "name": "Citrom",
+            "color": "#fffd54"
+          }
+        },
+        {
+          "data": {
+            "name": "Khaki",
+            "color": "#eee697"
+          }
+        },
+        {
+          "data": {
+            "name": "Arany",
+            "color": "#fad749"
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "name": "Kék variációk"
+      },
+      "children": [
+        {
+          "data": {
+            "name": "Türkiz",
+            "color": "#64a8ba"
+          }
+        },
+        {
+          "data": {
+            "name": "Cián",
+            "color": "#73fbfd"
+          }
+        },
+        {
+          "data": {
+            "name": "Égkék",
+            "color": "#53bcf9"
+          }
+        }
+      ]
+    }
+  ]
+}
