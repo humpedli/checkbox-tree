@@ -3,6 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AnimalService } from './animal.service';
 import { HttpClient } from '@angular/common/http';
+import { TreeData } from '../models/TreeData';
+import { of } from 'rxjs';
 
 describe('AnimalService', () => {
   let animalService: AnimalService;
@@ -30,7 +32,10 @@ describe('AnimalService', () => {
     waitForAsync(
       inject([HttpClient], (httpClient: HttpClient) => {
         // Arrange
-        spyOn(httpClient, 'get').and.callThrough();
+        const mockTreeData: TreeData<string> = new TreeData<string>(
+          'node1'
+        );
+        spyOn(httpClient, 'get').and.returnValue(of(mockTreeData));
 
         // Act
         animalService.getAnimals().subscribe();

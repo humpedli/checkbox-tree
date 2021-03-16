@@ -1,35 +1,79 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { inject, TestBed, waitForAsync } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AnimalService } from './core/services/animal.service';
+import { of } from 'rxjs';
+import { CheckboxTreeModel } from './core/models/CheckboxTreeModel';
+import { CheckboxModel } from './core/models/CheckboxModel';
+import { ColorService } from './core/services/color.service';
+import { ColorDefinition } from './core/models/ColorDefinition';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent
       ],
-    }).compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+    });
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(
+    waitForAsync(() => {
+      component = TestBed.createComponent(AppComponent).componentInstance;
+    })
+  );
 
-  it(`should have as title 'checkbox-tree'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('checkbox-tree');
-  });
+  it('should initialize the component',
+    waitForAsync(() => {
+      // Arrange
+      spyOn(component, 'getAnimalTree');
+      spyOn(component, 'getColorTree');
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('checkbox-tree app is running!');
-  });
+      // Act
+      component.ngOnInit();
+
+      // Assert
+      expect(component.getAnimalTree).toHaveBeenCalled();
+      expect(component.getColorTree).toHaveBeenCalled();
+    })
+  );
+
+  it('should getAnimalTree set animals',
+    waitForAsync(
+      inject([AnimalService], (animalService: AnimalService) => {
+        // Arrange
+        const animalTree = new CheckboxTreeModel<string>(new CheckboxModel<string>('test'));
+        spyOn(animalService, 'getAnimals').and.returnValue(of(animalTree));
+
+        // Act
+        component.getAnimalTree();
+
+        // Assert
+        expect(component.animals.model.value).toEqual('test');
+      })
+    )
+  );
+
+  it('should getColorTree set colors',
+    waitForAsync(
+      inject([ColorService], (colorService: ColorService) => {
+        // Arrange
+        const colorTree = new CheckboxTreeModel<ColorDefinition>(new CheckboxModel<ColorDefinition>(new ColorDefinition('test', '#000')));
+        spyOn(colorService, 'getColors').and.returnValue(of(colorTree));
+
+        // Act
+        component.getColorTree();
+
+        // Assert
+        expect(component.colors.model.value.name).toEqual('test');
+      })
+    )
+  );
 });

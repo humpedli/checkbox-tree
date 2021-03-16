@@ -3,6 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { ColorService } from './color.service';
+import { TreeData } from '../models/TreeData';
+import { of } from 'rxjs';
 
 describe('ColorService', () => {
   let colorService: ColorService;
@@ -30,7 +32,10 @@ describe('ColorService', () => {
     waitForAsync(
       inject([HttpClient], (httpClient: HttpClient) => {
         // Arrange
-        spyOn(httpClient, 'get').and.callThrough();
+        const mockTreeData: TreeData<string> = new TreeData<string>(
+          'node1'
+        );
+        spyOn(httpClient, 'get').and.returnValue(of(mockTreeData));
 
         // Act
         colorService.getColors().subscribe();
