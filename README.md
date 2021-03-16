@@ -1,27 +1,56 @@
 # CheckboxTree
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+Run this project with `npm start` and navigate to `http://localhost:4200/`
 
-## Development server
+## Developed and manually tested on:
+- macOS Big Sur 11.2.2
+- Chrome 89.0.4389.82
+- Node 10.23.3
+- npm 6.14.11
+- Angular 11.2.4
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Running unit tests (Karma / Jasmine)
 
-## Code scaffolding
+Run unit tests with `npm run test`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Check test coverage by opening `coverage/checkbox-tree/index.html` file in browser.
 
-## Build
+```
+TOTAL: 12 SUCCESS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+=============================== Coverage summary ===============================
+Statements   : 100% ( 70/70 )
+Branches     : 100% ( 20/20 )
+Functions    : 100% ( 30/30 )
+Lines        : 100% ( 55/55 )
+================================================================================
+````
 
-## Running unit tests
+## Running end-to-end tests (Cypress)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run integration tests with `npm run e2e`
 
-## Running end-to-end tests
+You can run cypress headless and export mp4 videos from tests if you do `cypress run`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+Checkbox-tree
+    ✓ should load correctly (575ms)
+    ✓ should leaf checkbox work in standalone mode (387ms)
+    ✓ should parent checkbox click trigger child checkboxes (621ms)
+    ✓ should child checkbox click trigger parent checkboxes (887ms)
+    ✓ should have colors in object based checkbox tree (214ms)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  5 passing (3s)
+```
+
+## Running linter
+
+Run TypeScript linter with `npm run lint`
+
+```
+Linting "checkbox-tree"...
+All files pass linting.
+```
+
+_Note that TS Linter is deprecated, but current Angular version still uses it by default._
